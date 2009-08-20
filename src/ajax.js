@@ -1,9 +1,15 @@
-// A generic function for performming AJAX requests
-// It takes one argument, which is an object that contains a set of options
-// All of which are outline in the comments, below
-// From John Resig's book Pro JavaScript Techniques
-// published by Apress, 2006-8
-JsUnitTest.ajax = function( options ) {
+
+JsUnitTest.ajax = function(options)
+{
+    /// <summary>
+    /// A generic function for performming AJAX requests
+    /// It takes one argument, which is an object that contains a set of options
+    /// All of which are outline in the comments, below
+    /// From John Resig's book Pro JavaScript Techniques
+    /// published by Apress, 2006-8
+    /// </summary>
+    /// <param name="options" type="Object"></param>
+
 
     // Load the options object with defaults, if no
     // values were provided by the user

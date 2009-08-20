@@ -1,9 +1,25 @@
-JsUnitTest.Template = function(template, pattern) {
+JsUnitTest.Template = function(template, pattern)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="template" type=""></param>
+    /// <param name="pattern" type=""></param>
+    /// <returns type="JsUnitTest.Template"></returns>
+
   this.template = template; //template.toString();
   this.pattern = pattern || JsUnitTest.Template.Pattern;
 };
 
-JsUnitTest.Template.prototype.evaluate = function(object) {
+JsUnitTest.Template.prototype.evaluate = function(object)
+{
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="object" type="Object"></param>
+    /// <returns type="String"></returns>
+
   if (typeof object.toTemplateReplacements == "function") {
     object = object.toTemplateReplacements();
   }

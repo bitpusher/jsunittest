@@ -1,11 +1,18 @@
 JsUnitTest.Event = {};
-// written by Dean Edwards, 2005
-// with input from Tino Zijdel, Matthias Miller, Diego Perini
-// namespaced by Dr Nic Williams 2008
 
-// http://dean.edwards.name/weblog/2005/10/add-event/
-// http://dean.edwards.name/weblog/2005/10/add-event2/
-JsUnitTest.Event.addEvent = function(element, type, handler) {
+JsUnitTest.Event.addEvent = function(element, type, handler)
+{
+    /// <summary>
+    /// written by Dean Edwards, 2005
+    /// with input from Tino Zijdel, Matthias Miller, Diego Perini
+    /// namespaced by Dr Nic Williams 2008
+    /// http://dean.edwards.name/weblog/2005/10/add-event/
+    /// http://dean.edwards.name/weblog/2005/10/add-event2/
+    /// </summary>
+    /// <param name="element" domElement="true"></param>
+    /// <param name="type" type="String"></param>
+    /// <param name="handler" type="Function"></param>
+
 	if (element.addEventListener) {
 		element.addEventListener(type, handler, false);
 	} else {
@@ -31,7 +38,15 @@ JsUnitTest.Event.addEvent = function(element, type, handler) {
 // a counter used to create unique IDs
 JsUnitTest.Event.addEvent.guid = 1;
 
-JsUnitTest.Event.removeEvent = function(element, type, handler) {
+JsUnitTest.Event.removeEvent = function(element, type, handler)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="element" domElement="true"></param>
+    /// <param name="type" type="String"></param>
+    /// <param name="handler" type="Function"></param>
+
 	if (element.removeEventListener) {
 		element.removeEventListener(type, handler, false);
 	} else {
@@ -42,7 +57,14 @@ JsUnitTest.Event.removeEvent = function(element, type, handler) {
 	}
 };
 
-JsUnitTest.Event.handleEvent = function(event) {
+JsUnitTest.Event.handleEvent = function(event)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="event" type=""></param>
+    /// <returns type="Object"></returns>
+
 	var returnValue = true;
 	// grab the event object (IE uses a global event object)
 	event = event || JsUnitTest.Event.fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
@@ -58,15 +80,30 @@ JsUnitTest.Event.handleEvent = function(event) {
 	return returnValue;
 };
 
-JsUnitTest.Event.fixEvent = function(event) {
+JsUnitTest.Event.fixEvent = function(event)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="event" type=""></param>
+    /// <returns type=""></returns>
+
 	// add W3C standard event methods
 	event.preventDefault = this.fixEvent.preventDefault;
 	event.stopPropagation = this.fixEvent.stopPropagation;
 	return event;
 };
-JsUnitTest.Event.fixEvent.preventDefault = function() {
+JsUnitTest.Event.fixEvent.preventDefault = function()
+{
+    /// <summary>
+    ///
+    /// </summary>
 	this.returnValue = false;
 };
-JsUnitTest.Event.fixEvent.stopPropagation = function() {
+JsUnitTest.Event.fixEvent.stopPropagation = function()
+{
+    /// <summary>
+    ///
+    /// </summary>
 	this.cancelBubble = true;
 };

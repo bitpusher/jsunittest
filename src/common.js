@@ -1,6 +1,13 @@
 var JsUnitTest = {
   Unit: {},
-  inspect: function(object) {
+  inspect: function(object)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="object" type="Object"></param>
+      /// <returns type="String"></returns>
+      
     try {
       if (typeof object == "undefined") {return 'undefined';}
       if (object === null) {return 'null';}
@@ -34,12 +41,27 @@ var JsUnitTest = {
     }
   },
 
-  getClass: function(object) {
+  getClass: function(object)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+
+      /// <param name="object" type="Object"></param>
+      /// <returns type="String"></returns>
+
     return Object.prototype.toString.call(object)
      .match(/^\[object\s(.*)\]$/)[1]; 
   },
 
-	$: function(element) {
+  $: function(element)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="element" type="String">Id(d) of dom elements</param>
+      /// <returns domElement="true"></returns>
+      
     if (arguments.length > 1) {
       for (var i = 0, elements = [], length = arguments.length; i < length; i++) {
         elements.push(this.$(arguments[i]));
@@ -52,7 +74,18 @@ var JsUnitTest = {
     return element;
   },
 
-	gsub: function(source, pattern, replacement) {
+  gsub: function(source, pattern, replacement)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+
+      /// <param name="source" type=""></param>
+      /// <param name="pattern" type=""></param>
+      /// <param name="replacement" type=""></param>
+
+      /// <returns type=""></returns>
+
     var result = '', match;
     replacement = arguments.callee.prepareReplacement(replacement);
 
@@ -67,18 +100,47 @@ var JsUnitTest = {
     }
     return result;
   },
-  scan: function(source, pattern, iterator) {
+  scan: function(source, pattern, iterator)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="source" type=""></param>
+      /// <param name="pattern" type=""></param>
+      /// <param name="iterator" type=""></param>
+
+      /// <returns type=""></returns>
+
     this.gsub(source, pattern, iterator);
     return String(source);
   },
-  escapeHTML: function(data) {
+  escapeHTML: function(data)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="data" type=""></param>
+      /// <returns type=""></returns>
     return data.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   },
-  toHexString : function(n) {
+  toHexString: function(n)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="n" type="Number"></param>
+      /// <returns type="String"></returns>
+      
     var string = n.toString(16);
     return '00'.substring(string.length) + string;
   },
-  arrayfromargs: function(args) {
+  arrayfromargs: function(args)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="args" type="arguments"></param>
+      /// <returns type=""></returns>
   	var myarray = new Array();
   	var i;
 
@@ -90,7 +152,14 @@ var JsUnitTest = {
   },
   
   // from now we recursively zip & compare nested arrays
-  areArraysEqual: function(expected, actual) {
+  areArraysEqual: function(expected, actual)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="" type=""></param>
+      /// <returns type=""></returns>
+      
     var expected_array = JsUnitTest.flattenArray(expected);
     var actual_array   = JsUnitTest.flattenArray(actual);
     if (expected_array.length == actual_array.length) {
@@ -101,29 +170,64 @@ var JsUnitTest = {
     }
     return false;
   },
-  
-  areArraysNotEqual: function(expected, actual) {
+
+  areArraysNotEqual: function(expected, actual)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="" type=""></param>
+      /// <returns type=""></returns>
+      
     return !this.areArraysEqual(expected, actual);
   },
 
-  areHashesEqual: function(expected, actual) {
+  areHashesEqual: function(expected, actual)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="" type=""></param>
+      /// <returns type=""></returns>
+      
     var expected_array = JsUnitTest.hashToSortedArray(expected);
     var actual_array   = JsUnitTest.hashToSortedArray(actual);
     return this.areArraysEqual(expected_array, actual_array);
   },
-  
-  areHashesNotEqual: function(expected, actual) {
+
+  areHashesNotEqual: function(expected, actual)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="" type=""></param>
+      /// <returns type=""></returns>
+      
     return !this.areHashesEqual(expected, actual);
   },
-  
-  hashToSortedArray: function(hash) {
+
+  hashToSortedArray: function(hash)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="hash" type="Object"></param>
+      /// <returns type=""></returns>
+
     var results = [];
     for (key in hash) {
       results.push([key, hash[key]]);
     }
     return results.sort();
   },
-  flattenArray: function(array) {
+  flattenArray: function(array)
+  {
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="array" type="Array"></param>
+      /// <returns type="Array"></returns>
+
     var results = arguments[1] || [];
     for (var i=0; i < array.length; i++) {
       var object = array[i];
@@ -136,7 +240,15 @@ var JsUnitTest = {
     }
     return results;
   },
-  selectorMatch: function(expression, element) {
+  selectorMatch: function(expression, element)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="expression" type=""></param>
+      /// <param name="element" domElement="true"></param>
+      /// <returns type=""></returns>
+
     var tokens = [];
     var patterns = {
       // combinators must be listed first
@@ -157,23 +269,54 @@ var JsUnitTest = {
     };
 
     var assertions = {
-      tagName: function(element, matches) {
+    tagName: function(element, matches)
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="" type=""></param>
+        /// <returns type=""></returns>
+
         return matches[1].toUpperCase() == element.tagName.toUpperCase();
       },
 
-      className: function(element, matches) {
+      className: function(element, matches)
+      {
+          /// <summary>
+          ///
+          /// </summary>
+          /// <param name="" type=""></param>
+          /// <returns type=""></returns>
         return Element.hasClassName(element, matches[1]);
       },
 
-      id: function(element, matches) {
+      id: function(element, matches)
+      {
+          /// <summary>
+          ///
+          /// </summary>
+          /// <param name="" type=""></param>
+          /// <returns type=""></returns>
         return element.id === matches[1];
       },
 
-      attrPresence: function(element, matches) {
+      attrPresence: function(element, matches)
+      {
+          /// <summary>
+          ///
+          /// </summary>
+          /// <param name="" type=""></param>
+          /// <returns type=""></returns>
         return Element.hasAttribute(element, matches[1]);
       },
 
-      attr: function(element, matches) {
+      attr: function(element, matches)
+      {
+          /// <summary>
+          ///
+          /// </summary>
+          /// <param name="" type=""></param>
+          /// <returns type=""></returns>
         var nodeValue = Element.readAttribute(element, matches[1]);
         return nodeValue && operators[matches[2]](nodeValue, matches[5] || matches[6]);
       }
@@ -206,8 +349,16 @@ var JsUnitTest = {
 
     return match;
   },
-  
-  toQueryParams: function(query, separator) {
+
+  toQueryParams: function(query, separator)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="query_in" type="String"></param>
+      /// <param name="separator" type="String"></param>
+      /// <returns type=""></returns>
+
     var query = query || window.location.search;
     var match = query.replace(/^\s+/, '').replace(/\s+$/, '').match(/([^?#]*)(#.*)?$/);
     if (!match) {return { };}
@@ -235,15 +386,30 @@ var JsUnitTest = {
     }
     return hash;
   },
-  
+
   String: {
-    interpret: function(value) {
+
+  interpret: function(value)
+  {
+      /// <summary>
+      ///
+      /// </summary>
+      /// <param name="value" type="Object"></param>
+      /// <returns type="String"></returns>
+
       return value == null ? '' : String(value);
     }
   }
 };
 
-JsUnitTest.gsub.prepareReplacement = function(replacement) {
+JsUnitTest.gsub.prepareReplacement = function(replacement)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="replacement" type="Object"></param>
+    /// <returns type="Function"></returns>
+
   if (typeof replacement == "function") {return replacement;}
   var template = new Template(replacement);
   return function(match) { return template.evaluate(match); };
