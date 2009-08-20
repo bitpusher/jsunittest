@@ -184,3 +184,23 @@ JsUnitTest.Unit.Runner.prototype.summary = function()
 
     return new JsUnitTest.Template('#{tests} tests, #{assertions} assertions, #{failures} failures, #{errors} errors, #{warnings} warnings').evaluate(this.getResult());
 };
+
+
+JsUnitTest.Unit.Results = function(tests)
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <field name="tests" type="Number" integer="true"></field>
+    /// <field name="assertions" type="Number" integer="true"></field>
+    /// <field name="failures" type="Number" integer="true"></field>
+    /// <field name="errors" type="Number" integer="true"></field>
+    /// <field name="warnings" type="Number" integer="true"></field>
+    /// <returns type="JsUnitTest.Unit.Results"></returns>
+    this.tests = tests || 0;
+    this.assertions = 0;
+    this.failures = 0;
+    this.errors = 0;
+    this.warnings = 0;
+}
+
